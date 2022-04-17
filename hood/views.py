@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from .models import Profile
+from .forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -6,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
       
       return render(request, 'index.html')
+      
 def update_profile(request):
     current_user = request.user
     form = ProfileForm(request.POST, request.FILES)

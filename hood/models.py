@@ -67,7 +67,7 @@ class Business(models.Model):
     image = CloudinaryField('image')
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)     
     email =  models.CharField(max_length=60)
-    phone_number = models.IntegerField(blank=True)
+    phone_no = models.IntegerField(blank=True)
     neighbourhood = models.ForeignKey(NeighbourHood,on_delete=models.CASCADE, related_name='business',null=True)
     posted_at = models.DateTimeField(auto_now=True)
         
