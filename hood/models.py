@@ -69,7 +69,7 @@ class Business(models.Model):
     email =  models.CharField(max_length=60)
     phone_no = models.IntegerField(blank=True)
     neighbourhood = models.ForeignKey(NeighbourHood,on_delete=models.CASCADE, related_name='business',null=True)
-    posted_at = models.DateTimeField(auto_now=True)
+    post_date = models.DateTimeField(auto_now=True)
         
     def __str__(self):
         return self.name      
@@ -110,4 +110,44 @@ class Business(models.Model):
         A method that deletes a business
         """        
         self.delete()
+
+class Health(models.Model):
+    name =models.CharField(max_length=100)
+    email = models.EmailField()
+    contact = models.IntegerField()
+    neighbourhood = models.ForeignKey(NeighbourHood,on_delete=models.CASCADE)
+ 
+    def __str__(self):
+        return self.name 
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    info =  HTMLField()
+    neighbourhood= models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='neighbourhood_post')
+    post_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.title
+         
+    @classmethod
+    def get_post(cls, id):
+        """
+        A method that gets a post using the given id
+        """   
+        post = Post.objects.filter(id=neighbourhood_id)
+        return post     
+    
+# Authority Model 
+class Authority(models.Model):
+    name =models.CharField(max_length=100)
+    email = models.EmailField()
+    contact = models.IntegerField()
+    neighbourhood = models.ForeignKey(NeighbourHood,on_delete=models.CASCADE)
+ 
+    def __str__(self):
+        return self.name      
+    
+  
+
+ 
       
