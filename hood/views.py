@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile,NeighbourHood
+from .models import Profile,NeighbourHood,Business,Authority,Health,Post
 from django.contrib.auth.models import User
 from .forms import ProfileForm,HoodForm
 from django.contrib.auth.decorators import login_required
@@ -44,5 +44,19 @@ def createhood(request):
             form = ProfileForm()
     return render(request,'create-hood.html',{'form':form})
 
+
+ 
+def neighbourhood(request,id):
+    user = request.user
+    profiles = Profile.objects.filter(user = user).all()
+    businesses = Business.objects.all().filter(neighbourhood_id=id)
+    posts = Post.objects.all().order_by('-posted_at').filter(neighbourhood_id=id)
+    hood = NeighbourHood.objects.get(id=id)
+    police = Authority.objects.all().filter(neighbourhood_id=id) 
+    health = Health.objects.all().filter(neighbourhood_id=id) 
+    
+    
+    return render(request,'hood.html',{'hood':hood,'police':police,'health': health,'posts':posts,'businesses': businesses,'profiles':profiles})
+  
 
  

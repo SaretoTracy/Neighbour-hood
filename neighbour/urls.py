@@ -26,5 +26,6 @@ urlpatterns = [
     path('profile-update',views.update_profile, name='update_profile'),
     path('profile/<pk>',views.profile, name = 'profile'),
     path('create-hood',views.createhood, name='createhood'), 
+    path('hood/<id>',views.neighbourhood, name = 'neighbourhood'),
 
 ]
