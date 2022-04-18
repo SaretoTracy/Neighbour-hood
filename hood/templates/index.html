@@ -58,4 +58,49 @@
             </div>
         </div>
     </div>
+
+    <div class="hood">
+        <div class=" mt-5 available-section">
+            <div class="d-flex justify-content-between">
+                <p> Available neighbourhoods:</p><br><br>
+                <p href="{%url 'createhood'%}"> <button class="btn btn-primary hood-btn">Create a Neighbourhood <i
+                        style="color: #fff" class="fas fa-home"></i></button></p>
+            </div>
+        </div>
+        <div class="" id="target-home">
+            <div class="row">
+                {% for hood in hoods %}
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="hood-list">
+                        <div class="card p-2">
+                            {% if hood.image %}
+                            <img class="card-img-top" src="{{ hood.image.url }}" alt="Card image cap"> {% else %}
+                            <p>No Image</p>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-map-marker-alt"></i> {{hood.name}}, {{hood.location}}</h5>
+                                <p class="card-text">{{hood.description}}</p>
+                                <p class="text-muted">{{hood.neighbour.count}} <i class="fas mx-1 fa-users"></i></p>
+                                <div class="d-flex justify-content-around">
+                                    {% if request.user.profile.neighbourhood == hood %}
+                                    <a href="{% url 'neighbourhood' id=hood.id %}">
+                                        <p style="color:#8A8635">Visit Neighbourhood</p>
+                                    </a>
+                                    <a href="#">
+                                        <p style="color: black">Change Neighbourhood</p>
+                                    </a>
+                                    {% elif not request.user.profile.neighbourhood %}
+
+                                    <p>Join Neighbourhood</p>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>{%endblock%}

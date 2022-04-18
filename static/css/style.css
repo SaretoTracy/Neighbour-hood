@@ -34,7 +34,7 @@
     font-weight: 500;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     position: relative;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .updatee {
@@ -43,6 +43,12 @@
 
 p {
     color: white;
+}
+
+.card {
+    background-color: #ff7551;
+    width: 150%;
+    padding-right: 10rem;
 }
 
 h4 {
