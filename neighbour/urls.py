@@ -25,5 +25,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('profile-update',views.update_profile, name='update_profile'),
     path('profile/<pk>',views.profile, name = 'profile'),
+    path('create-hood',views.createhood, name='createhood'), 
 
 ]

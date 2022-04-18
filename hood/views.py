@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Profile,NeighbourHood
 from django.contrib.auth.models import User
-from .forms import ProfileForm
+from .forms import ProfileForm,HoodForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
