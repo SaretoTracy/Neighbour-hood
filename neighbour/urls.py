@@ -27,5 +27,6 @@ urlpatterns = [
     path('profile/<pk>',views.profile, name = 'profile'),
     path('create-hood',views.createhood, name='createhood'), 
     path('hood/<id>',views.neighbourhood, name = 'neighbourhood'),
+    path('join_neighbourhood/<id>', views.join_neighbourhood, name='join-neighbourhood'),
 
 ]

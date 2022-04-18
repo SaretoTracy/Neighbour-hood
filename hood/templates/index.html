@@ -87,12 +87,12 @@
                                         <p style="color:#8A8635">Visit Neighbourhood</p>
                                     </a>
                                     <a href="#">
-                                        <p style="color: black">Change Neighbourhood</p>
+                                        <p style="color: #A3423C">Change Neighbourhood</p>
                                     </a>
                                     {% elif not request.user.profile.neighbourhood %}
-
-                                    <p>Join Neighbourhood</p>
-
+                                    <a href="{% url 'join-neighbourhood' hood.id %}">
+                                        <p>Join Neighbourhood</p>
+                                    </a>
                                     {% endif %}
                                 </div>
                             </div>

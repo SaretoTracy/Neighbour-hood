@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import Profile,NeighbourHood,Business,Authority,Health,Post
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm,HoodForm
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +12,8 @@ def index(request):
     profiles = Profile.objects.filter(id = current_user.id).all()
     hoods = NeighbourHood.objects.all().order_by('-post_date')    
     return render(request, 'index.html',{"profiles": profiles, "hoods":hoods})
-      
+
+@login_required(login_url='/accounts/login/')      
 def update_profile(request):
     current_user = request.user
     form = ProfileForm(request.POST, request.FILES)
@@ -25,12 +27,14 @@ def update_profile(request):
             form = ProfileForm()
     return render(request, 'profile-update.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def profile(request,pk):
     user = User.objects.get(pk = pk)
     profiles = Profile.objects.filter(user = user).all()
     current_user = request.user
     return render(request,'profile.html',{"current_user":current_user, "user":user, "profiles":profiles})
- 
+
+@login_required(login_url='/accounts/login/')
 def createhood(request):
     current_user = request.user
     form = HoodForm(request.POST, request.FILES)
@@ -45,7 +49,7 @@ def createhood(request):
     return render(request,'create-hood.html',{'form':form})
 
 
- 
+@login_required(login_url='/accounts/login/')
 def neighbourhood(request,id):
     user = request.user
     profiles = Profile.objects.filter(user = user).all()
@@ -57,6 +61,11 @@ def neighbourhood(request,id):
     
     
     return render(request,'hood.html',{'hood':hood,'police':police,'health': health,'posts':posts,'businesses': businesses,'profiles':profiles})
-  
-
+    
+@login_required(login_url='/accounts/login/') 
+def join_neighbourhood(request, id):
+    neighbourhood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.neighbourhood = neighbourhood
+    request.user.profile.save()
+    return redirect('index')
  
