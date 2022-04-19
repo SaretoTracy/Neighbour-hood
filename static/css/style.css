@@ -27,7 +27,8 @@
     max-height: 900px; */
     height: 100vh;
     display: flex;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 100%;
     border-radius: 20px;
     /* font-size: 15px; */
@@ -47,6 +48,33 @@
 
 p {
     color: white;
+}
+
+.center {
+    text-align: center;
+    border-radius: 20px;
+}
+
+.signs {
+    text-align: center;
+    width: 120%;
+}
+
+.info {
+    position: absolute;
+    left: 14rem;
+    top: 12rem;
+    line-height: 4rem;
+}
+
+h1 {
+    color: #FF7551;
+}
+
+.info h4 {
+    color: white;
+    text-shadow: 2px 2px 2px #FF7551;
+    line-height: 3rem;
 }
 
 .card {
