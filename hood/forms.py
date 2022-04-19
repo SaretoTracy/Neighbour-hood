@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import Profile,NeighbourHood,Business
+from .models import Profile,NeighbourHood,Business,Post
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -15,5 +15,9 @@ class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields=['image','name','email','phone_no']            
-        
-           
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields=['title','info']       
+       

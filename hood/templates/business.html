@@ -11,7 +11,7 @@
                 <form action="{% url 'create-business' id=hood.id %}" method="post" enctype="multipart/form-data">
                     {% csrf_token%} {% bootstrap_form form %}
                     <div class="form-group text-center">
-                        <input type="submit" class="m-4 btn btn-primary new-btn" value="Create Post">
+                        <input type="submit" class="m-4 btn btn-primary new-btn" value="Create Business">
                     </div>
                     <input type="hidden" name="next" value="{{next}}">
                 </form>
