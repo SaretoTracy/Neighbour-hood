@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .models import Profile,NeighbourHood,Business,Authority,Health,Post
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProfileForm,HoodForm,BusinessForm
+from .forms import ProfileForm,HoodForm,BusinessForm,PostForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -95,3 +95,19 @@ def createbusiness(request, id):
             form = BusinessForm()
     return render(request,'business.html',{'hood':hood, 'form':form})
  
+
+@login_required(login_url='/accounts/login/')
+def post(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    current_user = request.user
+    form = PostForm(request.POST, request.FILES)
+    if request.method == 'POST':  
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.neighbourhood = hood
+            post.save()
+            return redirect ('neighbourhood', hood_id)
+        else:
+            form = PostForm()
+    return render(request,'post.html',{'hood':hood, 'form':form})
