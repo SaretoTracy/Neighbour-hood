@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .models import Profile,NeighbourHood,Business,Authority,Health,Post
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProfileForm,HoodForm
+from .forms import ProfileForm,HoodForm,BusinessForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -78,4 +78,20 @@ def change_neighbourhood(request, id):
     request.user.profile.neighbourhood = None
     request.user.profile.save()
     return redirect('index')
+
+@login_required(login_url='/accounts/login/') 
+def createbusiness(request, id):
+    hood = NeighbourHood.objects.get(id=id)
+    current_user = request.user
+    form = BusinessForm(request.POST, request.FILES)
+    if request.method == 'POST':   
+        if form.is_valid():
+            bst = form.save(commit=False)
+            bst.user = request.user
+            bst.neighbourhood = hood
+            bst.save()
+            return redirect ('neighbourhood', id=hood.id)
+        else:
+            form = BusinessForm()
+    return render(request,'create-business.html',{'hood':hood, 'form':form})
  
