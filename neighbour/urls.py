@@ -29,6 +29,7 @@ urlpatterns = [
     path('create-hood',views.createhood, name='createhood'), 
     path('hood/<id>',views.neighbourhood, name = 'neighbourhood'),
     path('join_neighbourhood/<id>', views.join_neighbourhood, name='join-neighbourhood'),
+    path('business/<id>',views.createbusiness, name = 'create-business'),
     path('change_neighbourhood/<id>', views.change_neighbourhood, name='change-neighbourhood'),
 
 ]
