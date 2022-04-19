@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from .models import Profile,NeighbourHood,Business,Authority,Post
+from .models import Profile,NeighbourHood,Business,Post
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm,HoodForm,BusinessForm,PostForm
@@ -59,11 +59,11 @@ def neighbourhood(request,id):
     businesses = Business.objects.all().filter(neighbourhood_id=id)
     posts = Post.objects.all().order_by('-post_date').filter(neighbourhood_id=id)
     hood = NeighbourHood.objects.get(id=id)
-    police = Authority.objects.all().filter(neighbourhood_id=id) 
     
     
     
-    return render(request,'hood.html',{'hood':hood,'police':police,'posts':posts,'businesses': businesses,'profiles':profiles})
+    
+    return render(request,'hood.html',{'hood':hood,'posts':posts,'businesses': businesses,'profiles':profiles})
 
 @login_required(login_url='/accounts/login/') 
 def join_neighbourhood(request, id):

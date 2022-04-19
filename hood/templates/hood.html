@@ -79,6 +79,10 @@
         <p><i class="fas fa-phone me-2"></i> +254{{hood.health_contact}}</p>
         <p><i class="far fa-envelope me-2"></i>{{hood.health_email}}</p>
 
+        <h3>POLICE AUTHORITY</h3>
+        <p>{{hood.authority_center}}</p>
+        <p><i class="fas fa-phone me-2"></i> +254{{hood.authority_contact}}</p>
+        <p><i class="far fa-envelope me-2"></i>{{hood.authority_email}}</p>
 
         {% for post in posts %}
         <h3>NeighbourHood Posts</h3>
@@ -132,30 +136,7 @@
         <p>{{business.email}}</p>
     </div>
 </div>
-<div class="HOOD">
-    <div class="row ">
-        <div class="">
-            {% for item in police %}
-            <div class="HOOD text-center">
-                <h3>POLICE AUTHORITY</h3>
-                <p>{{item.name}}</p>
-                <p><i class="fas fa-phone me-2"></i> +254{{item.contact}}</p>
-                <p><i class="far fa-envelope me-2"></i>{{item.email}}</p>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="">
-            {% for item in health %}
-            <div class="HOOD text-center">
-                <h3>HEALTH DEPARTMENT</h3>
-                <p>{{item.name}}</p>
-                <p><i class="fas fa-phone me-2"></i> +254{{item.contact}}</p>
-                <p><i class="far fa-envelope me-2"></i>{{item.email}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
