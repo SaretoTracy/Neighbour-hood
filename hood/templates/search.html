@@ -1,6 +1,5 @@
 {%extends 'base.html'%} {% load bootstrap5 %} {% load static%} {% block content%}
-<div class="container">
-
+<div class=" container p-5 text-center">
     <div class="sidebar">
 
         <a class="logo-expand" href="{%url 'index'%}">HOOD</a>
@@ -59,29 +58,37 @@
         </div>
     </div>
 
-    <div class="row mt-3 p-5">
+    {% if results %}
+    <p> We have found {{results|length}} businesses with the search term "{{message}}" in this neighbourhood.</p>
+    {% else %}
+    <p> We have found 0 businesses for the search term "{{message}}" in this neighbourhood.</p>
+    {% endif %} {% if results %}
+    <div class="bst">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                {% for business in results %}
 
-        <h4>PROFILE</h4>
+                <div class="HOOD">
+                    <div class="card mb-2" style="width: 24rem;">
 
-        <div class="col-lg-6 col-md-6 col-sm-6 profile-details">
-            <div class="prof">
-                {% for profile in profiles %}
-                <div class="m-2 p-3 text-center">
-                    <img class="prof-pic" src="{{profile.profile_picture.url}}" alt="">
-                    <p class="mt-2">{{profile.user}}</p>
-                    <p><i class="fas fa-quote-right me-2"></i>{{profile.bio}}</p>
-                    <h4>CONTACT INFORMATION</h4>
-                    <p><i class="far fas fa-envelope me-2"></i>{{profile.email}}</p>
-                    <p><i class="fas fa-phone me-2"></i>+254{{profile.phone_no}}</p>
-                    {% if profile.neighbourhood %}
-                    <p><i class="fas fa-home me-2"></i>{{profile.neighbourhood}}</p>
-                    {% else %}
-                    <p class="text-small text-muted"><i class="fas fa-home me-2"></i><em>Join a neighbourhood for it to be displayed here</em></p>
-                    {% endif %} {% endfor %}
+                        <img class="card-img-top" src="{{business.image.url}}" alt="Card image cap">
 
+                        <div class="card-body">
+                            <h5 class="card-text">{{business.name}}</h5>
+                            <p><strong>Owner</strong>: {{business.user}}</p>
+                            <p>BUSINESS CONTACTS:</p>
+                            <p><i class="fas fa-phone me-2"></i> +254{{business.phone_number}}</p>
+                            <p><i class="far fa-envelope me-2"></i> {{business.email}}</p>
+                            <p class="ms-auto">Created {{business.post_date|timesince}} ago</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
+
+
+        {% endfor %}
     </div>
-</div>
-{% endblock %}
+    {% endif %}
+</div> {% endblock %}

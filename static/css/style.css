@@ -51,8 +51,7 @@ p {
 
 .card {
     background-color: #ff7551;
-    width: 150%;
-    padding-right: 10rem;
+    /* width: 150%; */
 }
 
 h4 {

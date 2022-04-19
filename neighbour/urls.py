@@ -32,5 +32,6 @@ urlpatterns = [
     path('business/<id>',views.createbusiness, name = 'create-business'),
     path('post/<hood_id>',views.post, name = 'post'),
     path('change_neighbourhood/<id>', views.change_neighbourhood, name='change-neighbourhood'),
+    path('search/',views.search_results, name='search_results'),
 
 ]
