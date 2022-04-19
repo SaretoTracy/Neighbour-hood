@@ -86,7 +86,7 @@
                                     <a href="{% url 'neighbourhood' id=hood.id %}">
                                         <p style="color:#8A8635">Visit Neighbourhood</p>
                                     </a>
-                                    <a href="#">
+                                    <a href="{% url 'change-neighbourhood' id=hood.id %}">
                                         <p style="color: #A3423C">Change Neighbourhood</p>
                                     </a>
                                     {% elif not request.user.profile.neighbourhood %}
