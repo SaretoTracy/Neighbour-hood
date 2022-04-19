@@ -34,6 +34,7 @@ urlpatterns = [
     path('post/<hood_id>',views.post, name = 'post'),
     path('change_neighbourhood/<id>', views.change_neighbourhood, name='change-neighbourhood'),
     path('search/',views.search_results, name='search_results'),
+    path('logout/', views.logout_user, name='logout'),
 
 
 ]

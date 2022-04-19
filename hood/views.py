@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import Profile,NeighbourHood,Business,Post
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm,HoodForm,BusinessForm,PostForm
 from django.contrib.auth.decorators import login_required
@@ -124,7 +125,7 @@ def search_results(request):
     return render(request,'search.html',{"message":message,"results":searched_users})
 
 
-def logout_request(request):
-	logout(request)
-	messages.info(request, "You have successfully logged out.") 
-	return redirect("welcome")
+@login_required(login_url='login')
+def logout_user(request):
+    logout(request)
+    return redirect('welcome')
