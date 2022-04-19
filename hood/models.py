@@ -12,12 +12,16 @@ from tinymce.models import HTMLField
 class NeighbourHood(models.Model):
     name = models.CharField(max_length=100)
     image = CloudinaryField('image')
+    health_email = models.EmailField(max_length=100,default='')
+    health_center=models.CharField(max_length=100,default='')
+    health_contact = models.IntegerField(default=0, null=True, blank=True)
     location = models.CharField(max_length=100)
     admin = models.ForeignKey(User,on_delete = models.CASCADE,related_name='administration',null=True)
     description = models.CharField(max_length=250)
     occupants = models.IntegerField(default=0, null=True, blank=True)
     post_date = models.DateTimeField(auto_now=True)
     
+
     def __str__(self):
         return self.name 
     
@@ -111,14 +115,6 @@ class Business(models.Model):
         """        
         self.delete()
 
-class Health(models.Model):
-    name =models.CharField(max_length=100)
-    email = models.EmailField()
-    contact = models.IntegerField()
-    neighbourhood = models.ForeignKey(NeighbourHood,on_delete=models.CASCADE)
- 
-    def __str__(self):
-        return self.name 
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

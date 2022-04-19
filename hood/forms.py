@@ -9,7 +9,7 @@ class ProfileForm(forms.ModelForm):
 class HoodForm(forms.ModelForm):
     class Meta:
         model = NeighbourHood
-        fields=['name','location','description','image']         
+        fields=['name','location','description','image','health_center','health_email','health_contact']         
         
 class BusinessForm(forms.ModelForm):
     class Meta:
