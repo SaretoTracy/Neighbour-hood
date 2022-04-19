@@ -30,6 +30,7 @@ urlpatterns = [
     path('hood/<id>',views.neighbourhood, name = 'neighbourhood'),
     path('join_neighbourhood/<id>', views.join_neighbourhood, name='join-neighbourhood'),
     path('business/<id>',views.createbusiness, name = 'create-business'),
+    path('post/<hood_id>',views.post, name = 'post'),
     path('change_neighbourhood/<id>', views.change_neighbourhood, name='change-neighbourhood'),
 
 ]
