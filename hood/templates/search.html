@@ -57,13 +57,13 @@
             </div>
         </div>
     </div>
+    <div class="search">
+        {% if results %}
+        <p> We have found {{results|length}} businesses with the search term "{{message}}" in this neighbourhood.</p>
+        {% else %}
+        <p> We have found 0 businesses for the search term "{{message}}" in this neighbourhood.</p>
+        {% endif %} {% if results %}
 
-    {% if results %}
-    <p> We have found {{results|length}} businesses with the search term "{{message}}" in this neighbourhood.</p>
-    {% else %}
-    <p> We have found 0 businesses for the search term "{{message}}" in this neighbourhood.</p>
-    {% endif %} {% if results %}
-    <div class="bst">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 {% for business in results %}
@@ -91,4 +91,5 @@
         {% endfor %}
     </div>
     {% endif %}
+</div>
 </div> {% endblock %}

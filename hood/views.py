@@ -124,3 +124,7 @@ def search_results(request):
     return render(request,'search.html',{"message":message,"results":searched_users})
 
 
+def logout_request(request):
+	logout(request)
+	messages.info(request, "You have successfully logged out.") 
+	return redirect("welcome")

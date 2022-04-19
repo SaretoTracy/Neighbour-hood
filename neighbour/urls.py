@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views 
 from django.urls import path
 from hood import views
 from django.conf.urls import include
@@ -33,5 +34,6 @@ urlpatterns = [
     path('post/<hood_id>',views.post, name = 'post'),
     path('change_neighbourhood/<id>', views.change_neighbourhood, name='change-neighbourhood'),
     path('search/',views.search_results, name='search_results'),
+
 
 ]
